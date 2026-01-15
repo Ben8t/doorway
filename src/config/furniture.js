@@ -10,16 +10,27 @@ export const furnitureLibrary = {
           imagePath: '/furniture/chair.svg',
           defaultWidth: 60,
           defaultHeight: 60,
+          realWidth: 45,  // cm
+          realHeight: 45, // cm
           aspectRatio: 1,
+          dynamic: false,
           tags: ['chair', 'dining']
         },
         {
           id: 'sofa-1',
-          name: 'Canapé 3 Places',
+          name: 'Canapé',
           imagePath: '/furniture/sofa.svg',
           defaultWidth: 180,
           defaultHeight: 80,
+          realWidth: 180,  // cm
+          realHeight: 80,  // cm
+          minWidth: 120,   // cm
+          maxWidth: 300,   // cm
+          minHeight: 70,   // cm
+          maxHeight: 100,  // cm
           aspectRatio: 2.25,
+          dynamic: true,
+          component: 'DynamicSofa',
           tags: ['sofa', 'living-room']
         }
       ]
@@ -34,7 +45,15 @@ export const furnitureLibrary = {
           imagePath: '/furniture/table.svg',
           defaultWidth: 120,
           defaultHeight: 80,
+          realWidth: 120,  // cm
+          realHeight: 80,  // cm
+          minWidth: 80,    // cm
+          maxWidth: 250,   // cm
+          minHeight: 70,   // cm
+          maxHeight: 120,  // cm
           aspectRatio: 1.5,
+          dynamic: true,
+          component: 'DynamicTable',
           tags: ['table', 'dining']
         },
         {
@@ -43,7 +62,10 @@ export const furnitureLibrary = {
           imagePath: '/furniture/coffee-table.svg',
           defaultWidth: 120,
           defaultHeight: 70,
+          realWidth: 120,  // cm
+          realHeight: 70,  // cm
           aspectRatio: 1.71,
+          dynamic: false,
           tags: ['table', 'living-room', 'coffee']
         },
         {
@@ -52,7 +74,15 @@ export const furnitureLibrary = {
           imagePath: '/furniture/desk.svg',
           defaultWidth: 140,
           defaultHeight: 70,
+          realWidth: 140,  // cm
+          realHeight: 70,  // cm
+          minWidth: 100,   // cm
+          maxWidth: 200,   // cm
+          minHeight: 60,   // cm
+          maxHeight: 80,   // cm
           aspectRatio: 2,
+          dynamic: true,
+          component: 'DynamicDesk',
           tags: ['desk', 'office']
         }
       ]
@@ -67,7 +97,10 @@ export const furnitureLibrary = {
           imagePath: '/furniture/bed.svg',
           defaultWidth: 150,
           defaultHeight: 200,
+          realWidth: 160,   // cm
+          realHeight: 200,  // cm
           aspectRatio: 0.75,
+          dynamic: false,
           tags: ['bed', 'bedroom']
         }
       ]
@@ -82,17 +115,46 @@ export const furnitureLibrary = {
           imagePath: '/furniture/bookshelf.svg',
           defaultWidth: 100,
           defaultHeight: 40,
+          realWidth: 100,  // cm
+          realHeight: 40,  // cm
           aspectRatio: 2.5,
+          dynamic: false,
           tags: ['storage', 'shelf']
         },
         {
           id: 'kallax-1x3',
-          name: 'Kallax 1×3 (Meuble TV)',
+          name: 'Kallax (Meuble TV)',
           imagePath: '/furniture/kallax.svg',
           defaultWidth: 150,
           defaultHeight: 50,
+          realWidth: 150,  // cm
+          realHeight: 40,  // cm
+          minWidth: 100,   // cm
+          maxWidth: 300,   // cm
+          minHeight: 40,   // cm
+          maxHeight: 80,   // cm
           aspectRatio: 3,
+          dynamic: true,
+          component: 'DynamicKallax',
           tags: ['storage', 'shelf', 'ikea', 'tv']
+        }
+      ]
+    },
+    {
+      id: 'decor',
+      name: 'Décoration',
+      items: [
+        {
+          id: 'fireplace-1',
+          name: 'Cheminée',
+          imagePath: '/furniture/fireplace.svg',
+          defaultWidth: 100,
+          defaultHeight: 60,
+          realWidth: 100,  // cm
+          realHeight: 60,  // cm
+          aspectRatio: 1.67,
+          dynamic: false,
+          tags: ['fireplace', 'decor']
         }
       ]
     }

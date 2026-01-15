@@ -1,5 +1,16 @@
 import { useRef, useState } from 'react';
 import styles from './PlacedFurniture.module.css';
+import DynamicSofa from './furniture/DynamicSofa';
+import DynamicTable from './furniture/DynamicTable';
+import DynamicKallax from './furniture/DynamicKallax';
+import DynamicDesk from './furniture/DynamicDesk';
+
+const DYNAMIC_COMPONENTS = {
+  DynamicSofa,
+  DynamicTable,
+  DynamicKallax,
+  DynamicDesk
+};
 
 export default function PlacedFurniture({
   item,
@@ -110,6 +121,10 @@ export default function PlacedFurniture({
     cursor: isDragging ? 'grabbing' : 'grab'
   };
 
+  // Check if this furniture uses a dynamic component
+  const DynamicComponent = item.component ? DYNAMIC_COMPONENTS[item.component] : null;
+  const useDynamic = DynamicComponent && item.customDimensions;
+
   return (
     <div
       className={`${styles.furniture} ${isSelected ? styles.selected : ''}`}
@@ -117,12 +132,18 @@ export default function PlacedFurniture({
       onMouseDown={handleMouseDown}
       title={item.name}
     >
-      <img
-        src={item.imagePath}
-        alt={item.name}
-        className={styles.image}
-        draggable="false"
-      />
+      {useDynamic ? (
+        <div style={{ width: '100%', height: '100%' }}>
+          <DynamicComponent width={item.width} height={item.height} />
+        </div>
+      ) : (
+        <img
+          src={item.imagePath}
+          alt={item.name}
+          className={styles.image}
+          draggable="false"
+        />
+      )}
       {isSelected && (
         <>
           <button

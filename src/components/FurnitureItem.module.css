@@ -1,13 +1,12 @@
 .item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 12px;
   background-color: var(--bg-white);
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  cursor: grab;
   transition: all 0.2s;
+  position: relative;
 }
 
 .item:hover {
@@ -15,7 +14,15 @@
   box-shadow: var(--shadow-md);
 }
 
-.item:active {
+.dragArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: grab;
+  width: 100%;
+}
+
+.dragArea:active {
   cursor: grabbing;
 }
 
@@ -45,3 +52,11 @@
   text-align: center;
   word-break: break-word;
 }
+
+.dimensions {
+  font-size: 10px;
+  color: var(--text-gray);
+  text-align: center;
+  margin-top: 2px;
+}
+

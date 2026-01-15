@@ -4,15 +4,27 @@ import { useState, useRef } from 'react';
 import FurniturePanel from '@/components/FurniturePanel';
 import FloorPlanCanvas from '@/components/FloorPlanCanvas';
 import Toolbar from '@/components/Toolbar';
+import ViewsManager from '@/components/ViewsManager';
 import { useDragAndDrop } from '@/hooks/useDragAndDrop';
+import { useViews } from '@/hooks/useViews';
 
 export default function Home() {
   const [floorPlanImage, setFloorPlanImage] = useState(null);
   const [placedFurniture, setPlacedFurniture] = useState([]);
   const [selectedFurniture, setSelectedFurniture] = useState(null);
+  const [showViewsManager, setShowViewsManager] = useState(false);
   const canvasRef = useRef(null);
 
   const { handleDragStart, handleDrop, handleDragOver } = useDragAndDrop();
+  const {
+    views,
+    currentViewId,
+    saveView,
+    loadView,
+    deleteView,
+    createNewView,
+    getCurrentView
+  } = useViews();
 
   const onDrop = (e) => {
     const newItem = handleDrop(e, canvasRef);
@@ -72,11 +84,56 @@ export default function Home() {
     );
   };
 
+  const handleSaveView = () => {
+    const currentView = getCurrentView();
+    const defaultName = currentView?.name || `Vue ${views.length + 1}`;
+
+    const name = window.prompt(
+      currentViewId ? 'Modifier le nom de la vue :' : 'Nom de la vue :',
+      defaultName
+    );
+
+    if (name === null) return; // User cancelled
+
+    const savedView = saveView(name || defaultName, floorPlanImage, placedFurniture);
+    alert(currentViewId ? 'Vue mise à jour !' : 'Vue sauvegardée !');
+  };
+
+  const handleLoadView = (viewId) => {
+    const view = loadView(viewId);
+    if (view) {
+      setFloorPlanImage(view.floorPlanImage);
+      setPlacedFurniture(view.placedFurniture || []);
+      setSelectedFurniture(null);
+    }
+  };
+
+  const handleNewView = () => {
+    if (currentViewId && (floorPlanImage || placedFurniture.length > 0)) {
+      const confirm = window.confirm(
+        'Créer une nouvelle vue ? Les modifications non sauvegardées seront perdues.'
+      );
+      if (!confirm) return;
+    }
+
+    createNewView();
+    setFloorPlanImage(null);
+    setPlacedFurniture([]);
+    setSelectedFurniture(null);
+  };
+
+  const currentView = getCurrentView();
+
   return (
     <div className="app-container">
       <Toolbar
         onClearAll={handleClearAll}
         hasPlacedFurniture={placedFurniture.length > 0}
+        onSaveView={handleSaveView}
+        onOpenViews={() => setShowViewsManager(true)}
+        onNewView={handleNewView}
+        currentViewName={currentView?.name}
+        viewsCount={views.length}
       />
       <div className="main-content">
         <FurniturePanel onDragStart={handleDragStart} />
@@ -95,6 +152,16 @@ export default function Home() {
           onSelectFurniture={handleSelectFurniture}
         />
       </div>
+
+      {showViewsManager && (
+        <ViewsManager
+          views={views}
+          currentViewId={currentViewId}
+          onLoadView={handleLoadView}
+          onDeleteView={deleteView}
+          onClose={() => setShowViewsManager(false)}
+        />
+      )}
     </div>
   );
 }

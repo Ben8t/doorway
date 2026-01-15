@@ -26,7 +26,11 @@ export function useDragAndDrop() {
       width: draggedItem.defaultWidth,
       height: draggedItem.defaultHeight,
       rotation: 0,
-      zIndex: Date.now()
+      zIndex: Date.now(),
+      // Keep dynamic component info and custom dimensions
+      component: draggedItem.component,
+      dynamic: draggedItem.dynamic,
+      customDimensions: draggedItem.customDimensions
     };
 
     setDraggedItem(null);
