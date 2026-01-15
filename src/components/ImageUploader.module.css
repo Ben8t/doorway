@@ -1,0 +1,45 @@
+.uploader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-white);
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin: 20px;
+}
+
+.uploader:hover {
+  border-color: var(--primary-color);
+  background-color: #f0f7ff;
+}
+
+.content {
+  text-align: center;
+  padding: 40px;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  color: var(--text-gray);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.fileInput {
+  display: none;
+}

@@ -1,0 +1,7 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chair - Top-down view -->
+  <!-- Seat -->
+  <rect x="10" y="15" width="40" height="35" fill="#8B4513" stroke="#654321" stroke-width="2" rx="2"/>
+  <!-- Backrest -->
+  <rect x="8" y="10" width="44" height="8" fill="#654321" stroke="#4A2F1A" stroke-width="2" rx="1"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg width="150" height="50" viewBox="0 0 150 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Kallax IKEA 1x3 - Top-down view (horizontal for TV stand) -->
+  <!-- Outer frame -->
+  <rect x="2" y="2" width="146" height="46" fill="#E8DCC8" stroke="#C9B896" stroke-width="2" rx="1"/>
+
+  <!-- First vertical divider -->
+  <rect x="50" y="2" width="4" height="46" fill="#C9B896"/>
+
+  <!-- Second vertical divider -->
+  <rect x="96" y="2" width="4" height="46" fill="#C9B896"/>
+
+  <!-- Inner shadows to show depth of compartments -->
+  <rect x="6" y="6" width="40" height="38" fill="#D4C8B0" opacity="0.3"/>
+  <rect x="58" y="6" width="34" height="38" fill="#D4C8B0" opacity="0.3"/>
+  <rect x="104" y="6" width="40" height="38" fill="#D4C8B0" opacity="0.3"/>
+</svg>
