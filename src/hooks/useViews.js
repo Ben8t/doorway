@@ -72,6 +72,27 @@ export function useViews() {
     setCurrentViewId(null);
   };
 
+  const duplicateView = (viewId) => {
+    const viewToDuplicate = views.find(v => v.id === viewId);
+    if (!viewToDuplicate) return null;
+
+    const newView = {
+      id: crypto.randomUUID(),
+      name: `${viewToDuplicate.name} (copie)`,
+      floorPlanImage: viewToDuplicate.floorPlanImage,
+      placedFurniture: viewToDuplicate.placedFurniture?.map(f => ({
+        ...f,
+        instanceId: crypto.randomUUID()
+      })) || [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    setViews(prev => [...prev, newView]);
+    setCurrentViewId(newView.id);
+    return newView;
+  };
+
   const getCurrentView = () => {
     if (!currentViewId) return null;
     return views.find(v => v.id === currentViewId);
@@ -83,6 +104,7 @@ export function useViews() {
     saveView,
     loadView,
     deleteView,
+    duplicateView,
     createNewView,
     getCurrentView
   };

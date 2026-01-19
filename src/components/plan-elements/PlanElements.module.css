@@ -1,0 +1,16 @@
+.interactive {
+  transition: opacity 0.2s;
+}
+
+.interactive:hover {
+  opacity: 0.8;
+}
+
+.interactiveWall {
+  cursor: pointer;
+  transition: stroke-width 0.2s;
+}
+
+.interactiveWall:hover {
+  stroke-width: 12px !important;
+}

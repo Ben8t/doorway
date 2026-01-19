@@ -29,6 +29,12 @@
   color: var(--text-gray);
 }
 
+.mode {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-gray);
+}
+
 .actions {
   display: flex;
   gap: 12px;
@@ -77,4 +83,85 @@
 .buttonPrimary:disabled {
   background-color: var(--border-color);
   color: var(--text-gray);
+}
+
+.zoomControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: var(--bg-light);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.zoomButton {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.zoomButton:hover:not(:disabled) {
+  background-color: var(--bg-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.zoomButton:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.zoomButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.zoomLabel {
+  min-width: 45px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.zoomResetButton {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.zoomResetButton:hover:not(:disabled) {
+  background-color: var(--bg-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.zoomResetButton:active:not(:disabled) {
+  transform: rotate(180deg);
+}
+
+.zoomResetButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

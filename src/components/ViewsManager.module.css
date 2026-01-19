@@ -175,6 +175,23 @@
   background-color: var(--primary-hover);
 }
 
+.duplicateButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background-color: var(--bg-light);
+  color: var(--text-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.duplicateButton:hover {
+  background-color: #e0e7ff;
+  color: var(--primary-color);
+}
+
 .deleteButton {
   width: 36px;
   height: 36px;

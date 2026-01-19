@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import PlanRenderer from './PlanRenderer';
 import styles from './ViewsManager.module.css';
 
 export default function ViewsManager({
   views,
   currentViewId,
   onLoadView,
+  onDuplicateView,
   onDeleteView,
-  onClose
+  onClose,
+  plans
 }) {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -55,7 +58,22 @@ export default function ViewsManager({
                 className={`${styles.viewItem} ${currentViewId === view.id ? styles.current : ''}`}
               >
                 <div className={styles.viewPreview}>
-                  {view.floorPlanImage ? (
+                  {view.floorPlanImage?.type === 'plan' ? (
+                    // Render plan reference
+                    (() => {
+                      const plan = plans?.find(p => p.id === view.floorPlanImage.planId);
+                      return plan ? (
+                        <PlanRenderer
+                          elements={plan.elements}
+                          canvasSize={plan.canvasSize}
+                          interactive={false}
+                        />
+                      ) : (
+                        <div className={styles.noPreview}>Plan introuvable</div>
+                      );
+                    })()
+                  ) : view.floorPlanImage ? (
+                    // Render uploaded image
                     <img src={view.floorPlanImage} alt={view.name} />
                   ) : (
                     <div className={styles.noPreview}>Aucun plan</div>
@@ -80,6 +98,18 @@ export default function ViewsManager({
                     title="Charger cette vue"
                   >
                     Charger
+                  </button>
+                  <button
+                    className={styles.duplicateButton}
+                    onClick={() => {
+                      onDuplicateView(view.id);
+                    }}
+                    title="Dupliquer cette vue"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <rect x="5" y="5" width="9" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5"/>
+                      <path d="M3 11V3C3 2.17157 3.67157 1.5 4.5 1.5H11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
                   </button>
                   <button
                     className={styles.deleteButton}
