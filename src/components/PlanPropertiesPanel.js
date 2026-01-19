@@ -138,7 +138,7 @@ export default function PlanPropertiesPanel({
         />
       </div>
       <div className={styles.field}>
-        <label>Sens d'ouverture</label>
+        <label>Sens d&apos;ouverture</label>
         <select
           value={localProps.openingSide || 'left'}
           onChange={(e) => handleChange('openingSide', e.target.value)}
@@ -186,13 +186,13 @@ export default function PlanPropertiesPanel({
         />
       </div>
       <div className={styles.field}>
-        <label>Direction d'ouverture</label>
+        <label>Direction d&apos;ouverture</label>
         <select
           value={localProps.openingDirection || 'outward'}
           onChange={(e) => handleChange('openingDirection', e.target.value)}
         >
-          <option value="outward">Vers l'extérieur</option>
-          <option value="inward">Vers l'intérieur</option>
+          <option value="outward">Vers l&apos;extérieur</option>
+          <option value="inward">Vers l&apos;intérieur</option>
         </select>
       </div>
       <div className={styles.field}>
